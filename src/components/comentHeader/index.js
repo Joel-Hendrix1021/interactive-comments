@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import styled from "styled-components";
 
 export const Img = styled.img`
@@ -6,15 +7,18 @@ export const Img = styled.img`
 `;
 
 export const Time = styled.p`
-  background: var(-grayish-blue);
+  color: hsl(211, 10%, 45%);
+  
 `;
 
 export const HeaderComts = styled.div`
     display: flex;
     justify-content:space-around; 
     align-items: center;
+    height: 2.5rem;
 `;
 export const TextUser = styled.p`
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
+    
 `;

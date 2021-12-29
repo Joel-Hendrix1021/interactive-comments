@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 import styled from "styled-components";
+import { moderate_blue } from "../color";
 
 export const CommentStyle = styled.div`
     width: 85%;
@@ -9,4 +11,47 @@ export const CommentStyle = styled.div`
 
 export const P = styled.p`
   font-size: 1.6rem;
+`;
+
+export const ButtonReply = styled.button`
+  background: none;
+  outline : none;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: ${moderate_blue};
+  
+`;
+export const ImgReply = styled.img`
+  width: 1.7rem;
+  padding: 0 1rem;
+`;
+
+export const ContainerButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const BtnCounts = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const BtnCount = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  
+`;
+
+export const Span = styled.span`
+  padding: 0 1rem;
+  font-size: 1.6rem;
+  color: ${moderate_blue};
+  font-weight: bold;
 `;
