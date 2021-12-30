@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import styled from "styled-components";
+import { moderate_blue } from "../color";
 
 export const Img = styled.img`
   width: 3rem;
@@ -21,4 +22,12 @@ export const TextUser = styled.p`
     font-size: 1.6rem;
     font-weight: bold;
     
+`;
+
+export const SpanYou = styled.span`
+  font-size: 1.6rem;
+  background: ${moderate_blue};
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 `;

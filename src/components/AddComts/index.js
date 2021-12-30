@@ -26,12 +26,15 @@ export const TextArea = styled.textarea`
     width: 90%;
     height: 6rem;
     resize: none;
+    border: solid 1px hsl(223, 19%, 93%);
+    background: none;
+    font-family: 'Rubik', sans-serif;
 `;
 
 export const BtnSend = styled.button`
     background: ${moderate_blue};
     color: white;
-    padding: 0.6rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 0.5rem;
     font-size: 1.6rem;
     border:none;
