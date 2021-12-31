@@ -1,21 +1,29 @@
+import { LineThread, Thread } from ".";
 import Comment from "../coment/Comment";
 
 const CardComent = ({ comment }) => {
-    console.log(comment.replies);
+    console.log("line", comment.replies);
     return (
         <>
             <Comment comment={comment}/>
             {
-                comment.replies.map(item => {
-                    return (
-                        <div key={item.id} className="thread">
-                            <Comment comment={item}/>
-                        </div>
-                    );
-                })
+                comment.replies.length > 0 && (
+                    <Thread>
+                        <LineThread></LineThread>
+                        {
+                            comment.replies.map(item => {
+                                return (
+                                    <Comment key={item.id} comment={item}/>
+                                );
+                            })
+                        }
+                    </Thread>
+                )
             }
         </>
     );
 };
 
 export default CardComent;
+
+//
