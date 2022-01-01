@@ -2,7 +2,6 @@ import { LineThread, Thread } from ".";
 import Comment from "../coment/Comment";
 
 const CardComent = ({ comment }) => {
-    console.log("line", comment.replies);
     return (
         <>
             <Comment comment={comment}/>

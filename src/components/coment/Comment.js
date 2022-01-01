@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
+import { actionShowModal } from "../../redux/action.js";
 import CommentHeader from "../comentHeader/CommentHeader.js";
 import { BtnCount, BtnCounts, ButtonReply, CommentStyle, ContainerButton, ImgReply, P, Span, ReplyingTo, BtnEdite, BtnDelete, ContainButton } from "./index.js";
 
 const Comment = ({ comment }) => {
-    console.log(comment);
+    const dispatch = useDispatch();
+
+    const handleShowModal = () => {
+        dispatch(actionShowModal());
+    };
 
     return (
         <CommentStyle>
@@ -20,7 +26,7 @@ const Comment = ({ comment }) => {
                     comment.id !== 4
                         ? <ButtonReply><ImgReply src="./images/icon-reply.svg"/>reply</ButtonReply>
                         : <ContainButton>
-                            <BtnDelete><img src="./images/icon-delete.svg" alt="delete" />Delete</BtnDelete>
+                            <BtnDelete onClick={handleShowModal} ><img src="./images/icon-delete.svg" alt="delete" />Delete</BtnDelete>
                             <BtnEdite><img src="./images/icon-edit.svg" alt="edite" />Edite</BtnEdite>
                         </ContainButton>
                 }
