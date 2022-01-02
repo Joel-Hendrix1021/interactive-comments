@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { moderate_blue } from "../color";
 
-export const ComTextArea = styled.div`
+export const Form = styled.form`
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -26,9 +26,13 @@ export const TextArea = styled.textarea`
     width: 90%;
     height: 6rem;
     resize: none;
+    border-radius: 0.5rem;
     border: solid 1px hsl(223, 19%, 93%);
     background: none;
     font-family: 'Rubik', sans-serif;
+     &:focus {
+        outline: 1px solid ${moderate_blue};
+     }
 `;
 
 export const BtnSend = styled.button`

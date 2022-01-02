@@ -10,12 +10,10 @@ import data from "./data.json";
 
 function App () {
     const comts = useSelector((state) => state.data.comments);
-    const showModal = useSelector(state => state.showModal);
-    console.log(showModal);
     return (
         <div className="App">
             {comts.map(item => <CardComent key={item.id} comment={item}/>)}
-            <Modal/>
+
             <AddCmts/>
         </div>
     );

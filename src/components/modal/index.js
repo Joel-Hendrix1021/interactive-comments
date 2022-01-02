@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 export const ModalStyle = styled.div`
   background: white;
-  border-radius: 1rem;
-  width: 80%;
+  border-radius: 0.5rem;
+  width: 75%;
   margin: auto;
-  height: 200px;
+  height: 190px;
   position: fixed;
-  
+  padding: 1.8rem;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  text-align: center;
+  text-align: left;
   z-index: 1000;
 `;
 
@@ -31,7 +31,8 @@ export const BtnModal = styled.button`
     color: white;
     padding: 1rem 2rem;
     border: none;
-    margin:0.5rem;
-    border-radius: 1rem;
+    margin: ${props => props.margin ? props.margin : "auto"};
+    border-radius: 0.5rem;
     font-size: 1.6rem;
+    font-weight: bold;
 `;

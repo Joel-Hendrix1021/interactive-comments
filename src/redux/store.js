@@ -5,7 +5,8 @@ import reducer from "./reducer";
 
 const initialState = {
     data,
-    showModal: false
+    showModal: false,
+    showAddCmts: false
 };
 
 function configureStore (state = initialState) {

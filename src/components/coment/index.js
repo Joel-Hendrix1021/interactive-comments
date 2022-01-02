@@ -12,6 +12,7 @@ export const CommentStyle = styled.div`
 export const P = styled.p`
   font-size: 1.6rem;
   color: ${`${grayish_blue}`};
+  text-align: ${props => props.align ? props.align : "lect"}
 `;
 
 export const ButtonReply = styled.button`
@@ -38,6 +39,9 @@ export const ContainerButton = styled.div`
 export const BtnCounts = styled.div`
   display: flex;
   align-items: center;
+  background: rgb(195, 196, 239, 0.1);
+  padding: 0.1rem;
+  border-radius: 0.5rem;
 `;
 
 export const BtnCount = styled.button`
