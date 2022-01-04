@@ -1,24 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BtnModal, ModalFixed, ModalStyle } from ".";
-import { actionDeleteCmt, actionShowModal } from "../../redux/action";
+import { actionDeleteCmtReply, actionDeleteComment } from "../../redux/action";
 import { P } from "../coment";
 
-const Modal = ({ id }) => {
+const Modal = ({ comment, setShowModal }) => {
     const dispatch = useDispatch();
-
-    const data = useSelector(state => state.data);
-    console.log(data);
+    console.log(comment);
 
     const handleExitModal = (e) => {
-        if (e.target.dataset.cancel) {
-            dispatch(actionShowModal());
-        } else if (e.target.dataset.external) {
-            dispatch(actionShowModal());
+        if (e.target.dataset.cancel || e.target.dataset.external) {
+            setShowModal(false);
         }
     };
     const handleDelete = () => {
-        dispatch(actionDeleteCmt(id));
-        dispatch(actionShowModal());
+        if (comment.replyingTo) {
+            dispatch(actionDeleteCmtReply(comment.id));
+        } else {
+            dispatch(actionDeleteComment(comment.id));
+        }
+
+        setShowModal(false);
     };
 
     return (

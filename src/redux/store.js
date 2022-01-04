@@ -4,9 +4,8 @@ import data from "../data.json";
 import reducer from "./reducer";
 
 const initialState = {
-    data,
-    showModal: false,
-    showAddCmts: false
+    currentUser: data.currentUser,
+    comments: data.comments
 };
 
 function configureStore (state = initialState) {

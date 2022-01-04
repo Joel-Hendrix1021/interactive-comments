@@ -1,30 +1,32 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AddFooterCmts, BtnSend, Form, TextArea } from ".";
-import { actionAddFormCmt, actionUpdateComt } from "../../redux/action";
+
 import { Img } from "../comentHeader";
 
-const AddCmts = ({ comment }) => {
-    const [newCmt, setNewCmt] = useState(comment || "");
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.data.currentUser);
+const initialState = {
+    content: "",
+    score: 0,
+    user: null
+};
+
+const AddCmts = ({ comment, setShowForm, replyingTo, commentId }) => {
+    const [newCmt, setNewCmt] = useState(comment || initialState);
+
+    const user = useSelector(state => state.currentUser);
     const handleChange = (e) => {
-        setNewCmt({
-            ...newCmt,
-            [e.target.name]: e.target.value
-        });
+        setNewCmt({ ...newCmt, [e.target.name]: e.target.value });
     };
+    console.log(comment);
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(actionUpdateComt(newCmt));
-        dispatch(actionAddFormCmt());
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-            <TextArea name="content" onChange={handleChange} id="comment" defaultValue={newCmt.content} placeholder="add comment"></TextArea>
+            <TextArea name="content" onChange={handleChange} value={newCmt.content} id="comment" placeholder="add comment"></TextArea>
             <AddFooterCmts>
-                <Img src={user.image.png} alt="" />
+                <Img src={user.image.png} alt="user" />
                 <BtnSend >{comment ? "UPDATE" : "SEND"}</BtnSend>
             </AddFooterCmts>
         </Form>

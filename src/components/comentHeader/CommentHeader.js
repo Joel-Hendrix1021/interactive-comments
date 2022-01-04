@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { HeaderComts, Img, SpanYou, TextUser, Time } from "./index";
+import TimeAgo from "react-timeago";
 
 const CommentHeader = ({ comment }) => {
+    const user = comment.user.username;
     return (
         <HeaderComts>
             <Img src={comment.user.image.png} alt={comment.user.username} />
             <TextUser>{comment.user.username}</TextUser>
-            {comment.id === 4 && <SpanYou>you</SpanYou>}
-            <Time>{comment.createdAt}</Time>
+            {user === "juliusomo" && <SpanYou>you</SpanYou>}
+            <Time>{typeof comment.createdAt === "number" ? <TimeAgo date={comment.createdAt}/> : comment.createdAt}</Time>
         </HeaderComts>
     );
 };

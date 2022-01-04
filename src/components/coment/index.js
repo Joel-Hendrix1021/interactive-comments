@@ -24,7 +24,7 @@ export const ButtonReply = styled.button`
   font-size: 1.6rem;
   font-weight: bold;
   color: ${moderate_blue};
-  
+  cursor: pointer;
 `;
 export const ImgReply = styled.img`
   width: 1.7rem;
@@ -42,6 +42,7 @@ export const BtnCounts = styled.div`
   background: rgb(195, 196, 239, 0.1);
   padding: 0.1rem;
   border-radius: 0.5rem;
+  
 `;
 
 export const BtnCount = styled.button`
@@ -51,7 +52,7 @@ export const BtnCount = styled.button`
   font-size: 1.6rem;
   display: flex;
   align-items: center;
-  
+  cursor: pointer;
 `;
 
 export const Span = styled.span`
@@ -82,6 +83,7 @@ export const BtnEdite = styled.button`
   color: ${moderate_blue};
   justify-content: space-between;
   font-weight: bold;
+  cursor: pointer;
    & img {
       margin: 0 1rem;
    }
@@ -97,6 +99,7 @@ export const BtnDelete = styled.button`
   color: ${soft_red};
   justify-content: space-between;
   font-weight: bold;
+  cursor: pointer;
    & img {
       margin: 0 1rem;
    }
