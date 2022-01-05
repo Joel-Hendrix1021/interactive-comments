@@ -1,78 +1,45 @@
-export const actionAddComment = (newComment) => {
+export const actionAddComment = (newComment, id) => {
     return {
         type: "ADD_COMMENT",
-        payload: newComment
+        payload: {
+            newComment,
+            id
+        }
     };
 };
 
-export const actionDeleteComment = (id) => {
+export const actionDeleteComment = (comentId, repliesId) => {
     return {
         type: "DELETE_COMMENT",
-        payload: id
+        payload: {
+            comentId,
+            repliesId
+        }
     };
 };
 
-export const actionUpdateComment = (comment) => {
+export const actionUpdateComment = (comment, id) => {
     return {
         type: "UPDATE_COMMENT",
-        payload: comment
-    };
-};
-
-export const actionAddCommentReply = (comment, id) => {
-    return {
-        type: "ADD_COMMENT_REPLY",
         payload: {
-            comment,
+            updateComent: comment,
             repliesId: id
         }
     };
 };
 
-export const actionDeleteCmtReply = (id) => {
+export const actionCountPlus = (id) => {
     return {
-        type: "DELETE_COMMENT_REPLY",
-        payload: id
+        type: "COUNT_PLUS",
+        payload: {
+            id
+        }
     };
 };
 
-export const actionUpdateComtReply = (newCmt) => {
+export const actionCountMinus = (id) => {
     return {
-        type: "UPDATE_COMMENT_REPLY",
-        payload: newCmt
-    };
-};
-// sum score comment
-export const actionScorePlus = (id) => {
-    return {
-        type: "ADD_SCORE_PLUS",
-        payload: {
-            id
-        }
-    };
-};
-// score comment
-export const actionScoreMin = (id) => {
-    return {
-        type: "ADD_SCORE_MIN",
-        payload: {
-            id
-        }
-    };
-};
-// score comment reply
-export const actionScoreReplyPlus = (id) => {
-    return {
-        type: "ADD_SCORE_REPLY_PLUS",
-        payload: {
-            id
-        }
-    };
-};
-// score decrement comment reply
-export const actionScoreReplyMin = (id) => {
-    return {
-        type: "ADD_SCORE_REPLY_MIN",
+        type: "COUNT_MINUS",
         payload: {
             id
         }

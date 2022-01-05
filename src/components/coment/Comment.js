@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionScoreMin, actionScorePlus, actionScoreReplyMin } from "../../redux/action.js";
+import { actionCountMinus, actionCountPlus } from "../../redux/action.js";
 import AddCmts from "../AddComts/AddCmts.js";
 import CommentHeader from "../comentHeader/CommentHeader.js";
 import Modal from "../modal/Modal.js";
@@ -9,23 +10,20 @@ import { BtnCount, BtnCounts, ButtonReply, CommentStyle, ContainerButton, ImgRep
 const Comment = ({ comment }) => {
     const [showModal, setShowModal] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [listCount, setListCount] = useState([]);
+    const [count, setCount] = useState(0);
     const currentUser = useSelector(state => state.currentUser.username);
-    const user = comment.user.username;
     const dispatch = useDispatch();
+    const user = comment.user.username;
 
-    const handleSum = (comment) => {
-        if (comment.replyingTo) {
-            dispatch(actionScorePlus(comment.id));
-        } else {
-            dispatch(actionScorePlus(comment.id));
-        }
-    };
-
-    const handleRes = () => {
-        if (comment.replyingTo) {
-            dispatch(actionScoreReplyMin(comment.id));
-        } else {
-            dispatch(actionScoreMin(comment.id));
+    const handleCountScore = (id, action) => {
+        if (action === "plus") {
+            if (!listCount.includes(currentUser)) {
+                setListCount([...listCount, currentUser]);
+                dispatch(actionCountPlus(id));
+            }
+        } else if (action === "minus") {
+            dispatch(actionCountMinus(id));
         }
     };
 
@@ -39,9 +37,9 @@ const Comment = ({ comment }) => {
                 </div>
                 <ContainerButton>
                     <BtnCounts>
-                        <BtnCount onClick={() => handleSum(comment)}><img src="./images/icon-plus.svg" alt="plus" /></BtnCount>
+                        <BtnCount onClick={() => handleCountScore(comment.id, "plus")}><img src="./images/icon-plus.svg" alt="plus" /></BtnCount>
                         <Span>{comment.score}</Span>
-                        <BtnCount onClick={() => handleRes(comment)}><img src="./images/icon-minus.svg" alt="minus" /></BtnCount>
+                        <BtnCount onClick={() => handleCountScore(comment.id, "minus")}><img src="./images/icon-minus.svg" alt="minus" /></BtnCount>
                     </BtnCounts>
                     {
                         user !== currentUser
@@ -53,7 +51,7 @@ const Comment = ({ comment }) => {
                     }
                 </ContainerButton>
             </CommentStyle>
-            { showForm && <AddCmts /> }
+            { showForm && <AddCmts comment={user === currentUser && comment} commentId={comment.id} setShowForm={setShowForm} replyingTo={comment.replyingTo}/> }
         </>
     );
 };

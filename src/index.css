@@ -1,23 +1,11 @@
-:root {
-  Darkblue: #324152;
-  GrayishBlue: hsl(211, 10%, 45%);
-  Lightgray: hsl(223, 19%, 93%);
-  Verylighgray: hsl(228, 33%, 97%);
-  White: hsl(0, 0%, 100%);
-
-  Moderatblue: rgb(84, 87, 182);
-SoftRed: hsl(358, 79%, 66%);
-Lightgrayishblue: rgb(195, 196, 239);
-Palered: hsl(357, 100%, 86%)
-}
 
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  padding: 0;
   background-color: hsl(223, 19%, 93%);
 }
 

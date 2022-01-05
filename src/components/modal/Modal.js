@@ -1,11 +1,14 @@
-import { useDispatch } from "react-redux";
+/* eslint-disable no-unused-vars */
+
+import { useDispatch, useSelector } from "react-redux";
 import { BtnModal, ModalFixed, ModalStyle } from ".";
-import { actionDeleteCmtReply, actionDeleteComment } from "../../redux/action";
+import { getRepliesByUser } from "../../helper/getRepliesByUser";
+import { actionDeleteComment } from "../../redux/action";
 import { P } from "../coment";
 
 const Modal = ({ comment, setShowModal }) => {
     const dispatch = useDispatch();
-    console.log(comment);
+    const cms = useSelector(state => state.comments);
 
     const handleExitModal = (e) => {
         if (e.target.dataset.cancel || e.target.dataset.external) {
@@ -14,11 +17,17 @@ const Modal = ({ comment, setShowModal }) => {
     };
     const handleDelete = () => {
         if (comment.replyingTo) {
-            dispatch(actionDeleteCmtReply(comment.id));
+            const findCmt = cms.find(c => c.user.username === comment.replyingTo);
+            if (findCmt) {
+                dispatch(actionDeleteComment(comment.id, findCmt.id));
+            } else {
+                const findReply = getRepliesByUser(cms, comment.replyingTo);
+                dispatch(actionDeleteComment(comment.id, findReply.id));
+            }
+            setShowModal(false);
         } else {
             dispatch(actionDeleteComment(comment.id));
         }
-
         setShowModal(false);
     };
 

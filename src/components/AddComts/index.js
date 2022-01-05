@@ -8,27 +8,28 @@ export const Form = styled.form`
     flex-direction: column;
     justify-content: space-around;
     margin: auto;
-    height: 15rem;
+    height: 16rem;
     margin-bottom: 2rem;
     background: #f5f5f5;
     width: 90%;
+    border-radius: 0.5rem;
 `;
 
 export const AddFooterCmts = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
     width: 90%;
 `;
 
 export const TextArea = styled.textarea`
-    width: 90%;
-    height: 6rem;
+    width: 85%;
+    height: 5rem;
     resize: none;
     border-radius: 0.5rem;
     border: solid 1px hsl(223, 19%, 93%);
     background: none;
+    padding: 1rem;
     font-family: 'Rubik', sans-serif;
      &:focus {
         outline: 1px solid ${moderate_blue};

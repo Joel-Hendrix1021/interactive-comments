@@ -4,104 +4,59 @@ export default function reducer (state, action) {
     case "ADD_COMMENT":
         return {
             ...state,
-            comments: [...state.comments, action.payload]
+            comments: action.payload.id === undefined
+                ? [...state.comments, action.payload.newComment]
+                : state.comments.map(c => {
+                    if (c.id === action.payload.id) {
+                        return {
+                            ...c,
+                            replies: [...c.replies, action.payload.newComment]
+                        };
+                    }
+                    return c;
+                })
+        };
+    case "UPDATE_COMMENT":
+        return {
+            ...state,
+            comments: action.payload.repliesId === undefined
+                ? state.comments.map(c => c.id === action.payload.updateComent.id ? action.payload.updateComent : c)
+                : state.comments.map(c => {
+                    if (c.id === action.payload.repliesId) {
+                        return {
+                            ...c,
+                            replies: c.replies.map(r => r.id === action.payload.updateComent.id ? action.payload.updateComent : r)
+                        };
+                    }
+                    return c;
+                })
+
         };
     case "DELETE_COMMENT":
         return {
             ...state,
-            comments: state.comments.filter(comment => comment.id !== action.payload)
-        };
-    case "ADD_COMMENT_REPLY":
-        return {
-            ...state,
-            comments: state.comments.map(c => {
-                if (c.id === action.payload.repliesId) {
-                    return {
-                        ...c,
-                        replies: [...c.replies, { ...action.payload.comment }]
-                    };
-                } else {
-                    return {
-                        ...c,
-                        replies: c.replies.map(r => {
-                            if (r.id === action.payload.repliesId) {
-                                return {
-                                    ...r,
-                                    replies: [...r.replies, { ...action.payload.comment }]
-                                };
-                            } else {
-                                return r;
-                            }
-                        })
-                    };
-                }
-            })
-        };
-    case "UPDATE_COMMENT_REPLY":
-        return {
-            ...state,
-            comments: state.comments.map(c => {
-                if (c.replies.length > 0) {
-                    return {
-                        ...c,
-                        replies: c.replies.map(r => r.id === 4 ? action.payload : r)
-                    };
-                } else {
+            comments: action.payload.repliesId === undefined
+                ? state.comments.filter(c => c.id !== action.payload.comentId)
+                : state.comments.map(c => {
+                    if (c.id === action.payload.repliesId) {
+                        return {
+                            ...c,
+                            replies: c.replies.filter(r => r.id !== action.payload.comentId)
+                        };
+                    }
                     return c;
-                }
-            })
+                })
         };
-
-    case "DELETE_COMMENT_REPLY":
-        return {
-            ...state,
-            comments: state.comments.map(c => {
-                if (c.replies.length > 0) {
-                    return {
-                        ...c,
-                        replies: c.replies.filter(r => r.id !== action.payload)
-                    };
-                }
-                return c;
-            })
-        };
-    case "ADD_SCORE_PLUS":
+    case "COUNT_PLUS":
         return {
             ...state,
             comments: state.comments.map(c => c.id === action.payload.id ? { ...c, score: c.score + 1 } : c)
         };
-    case "ADD_SCORE_REPLY_PLUS":
-        return {
-            ...state,
-            comments: state.comments.map(c => {
-                if (c.replies.length > 0) {
-                    return {
-                        ...c,
-                        replies: c.replies.map(r => r.id === action.payload.id ? { ...r, score: r.score + 1 } : r)
-                    };
-                }
-                return c;
-            })
-        };
-    case "ADD_SCORE_MIN":
+    case "COUNT_MINUS":
         return {
             ...state,
             comments: state.comments.map(c => c.id === action.payload.id ? { ...c, score: c.score - 1 } : c)
         };
-    case "ADD_SCORE_REPLY_MIN":
-        return {
-            ...state,
-            comments: state.comments.map(c => {
-                if (c.replies.length > 0) {
-                    return {
-                        ...c,
-                        replies: c.replies.map(r => r.id === action.payload.id ? { ...r, score: r.score - 1 } : r)
-                    };
-                }
-                return c;
-            })
-        };
-
     default :
         return state;
     }
