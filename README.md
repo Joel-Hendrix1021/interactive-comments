@@ -1,6 +1,6 @@
 # Frontend Mentor - Interactive comments section
 
-![Design preview for the Interactive comments section coding challenge](./design/desktop-preview.jpg)
+<img src="https://res.cloudinary.com/dz209s6jk/image/upload/q_auto:good,w_900/Challenges/l3cxamx1e6vpngqjtdyt.jpg"/>
 
 ## Welcome! 👋
 
