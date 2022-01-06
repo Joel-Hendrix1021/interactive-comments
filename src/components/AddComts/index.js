@@ -13,6 +13,9 @@ export const Form = styled.form`
     background: #f5f5f5;
     width: 90%;
     border-radius: 0.5rem;
+    @media (min-width: 768px) {
+        width: 47.5%;
+    }
 `;
 
 export const AddFooterCmts = styled.div`
