@@ -2,9 +2,17 @@
 import styled from "styled-components";
 import { moderate_blue } from "../color";
 
-export const ContainerButton = styled.div`
+export const ContainButton = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: static;
+  @media (min-width: 768px) {
+     position: absolute;
+     width: 200px;
+     right: 40px;
+     top: 20px;
+  }
 `;
 
 export const ButtonReply = styled.button`
@@ -17,6 +25,7 @@ export const ButtonReply = styled.button`
   font-weight: bold;
   color: ${moderate_blue};
   cursor: pointer;
+  
 `;
 
 export const ImgReply = styled.img`
@@ -31,16 +40,6 @@ export const Span = styled.span`
   font-weight: bold;
 `;
 
-export const ContainButton = styled.div`
-  display: flex;
-  flex-direction: row;
-  @media (min-width: 768px) {
-     position: absolute;
-     right: 40px;
-     top: 20px;
-  }
-`;
-
 export const BtnAction = styled.button`
   background: none;
   outline: none;
@@ -51,6 +50,7 @@ export const BtnAction = styled.button`
   color:${props => props.color ? props.color : `${moderate_blue}`};
   justify-content: space-between;
   font-weight: bold;
+ 
   cursor: pointer;
   & img {
     

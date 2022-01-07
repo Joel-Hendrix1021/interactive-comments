@@ -6,7 +6,6 @@ import CardComent from "./components/CardComent/CardComent";
 
 function App () {
     const comts = useSelector((state) => state.comments);
-    console.log(comts);
 
     return (
         <div className="App">

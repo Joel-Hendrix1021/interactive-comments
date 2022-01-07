@@ -9,14 +9,17 @@ export const CommentStyle = styled.div`
     margin: 1rem auto;
     padding: 2rem;
     display: grid;
-    grid-template-columns: 10% 85% 5%;
-    grid-gap: 1rem;
+    grid-template-rows:  85% 15%;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     align-items: center;
     border-radius: 0.5rem;
 
     @media (min-width: 768px) {
         width:45%;
+        grid-template-rows:100%;
+        grid-template-columns: 10% 85% 5%;
+        grid-gap: 1rem;
     }
 `;
 
@@ -30,10 +33,12 @@ export const P = styled.p`
 export const BtnCounts = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   background: rgb(195, 196, 239, 0.1);
   padding: 0.1rem;
   border-radius: 0.5rem;
-
+  width: 100px;
+  
   @media (min-width: 768px) {
     flex-direction: column;
     justify-content:space-around;
@@ -51,7 +56,7 @@ export const BtnCount = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  
+   
 `;
 export const ReplyingTo = styled.span`
   font-size: 1.6rem;
@@ -60,5 +65,9 @@ export const ReplyingTo = styled.span`
 `;
 
 export const BodyComment = styled.div`
-  
+   
+   @media (max-width: 768px) {
+    grid-column: 1 / 3;
+    grid-row: 1;
+   }
   `;

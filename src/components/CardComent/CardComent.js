@@ -1,4 +1,5 @@
-import { LineThread, Thread } from ".";
+/* eslint-disable no-unused-vars */
+import { LineThread, Spanx, Thread } from ".";
 import Comment from "../coment/Comment";
 
 const CardComent = ({ comment }) => {
@@ -9,13 +10,15 @@ const CardComent = ({ comment }) => {
                 comment.replies.length > 0 && (
                     <Thread>
                         <LineThread></LineThread>
-                        {
-                            comment.replies.map(item => {
-                                return (
-                                    <Comment key={item.id} comment={item}/>
-                                );
-                            })
-                        }
+                        <div className="content-thread">
+                            {
+                                comment.replies.map(item => {
+                                    return (
+                                        <Comment key={item.id} comment={item} />
+                                    );
+                                })
+                            }
+                        </div>
                     </Thread>
                 )
             }

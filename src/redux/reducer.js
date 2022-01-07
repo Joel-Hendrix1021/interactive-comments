@@ -1,5 +1,4 @@
 export default function reducer (state, action) {
-    console.log(action.payload);
     switch (action.type) {
     case "ADD_COMMENT":
         return {

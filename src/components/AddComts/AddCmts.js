@@ -25,6 +25,7 @@ const AddCmts = ({ comment, commentId, setShowForm, replyingTo }) => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (newCmt.content.trim() === "") return alert("Please enter your comment");
         if (newCmt.id) {
             // update comment here
             const findCmt = cm.find(c => c.id === comment.id);

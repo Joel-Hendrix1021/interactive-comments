@@ -17,7 +17,7 @@ const Comment = ({ comment }) => {
     const currentUser = useSelector(state => state.currentUser.username);
     const dispatch = useDispatch();
     const user = comment.user.username;
-    console.log(count);
+
     const handleCountScore = (id, action) => {
         if (action === "plus") {
             console.log("+");
