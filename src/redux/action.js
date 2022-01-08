@@ -1,29 +1,27 @@
-export const actionAddComment = (newComment, id) => {
+export const actionAddComment = (newComment, replyId) => {
     return {
         type: "ADD_COMMENT",
         payload: {
             newComment,
+            replyId
+        }
+    };
+};
+
+export const actionDeleteComment = (id) => {
+    return {
+        type: "DELETE_COMMENT",
+        payload: {
             id
         }
     };
 };
 
-export const actionDeleteComment = (comentId, repliesId) => {
-    return {
-        type: "DELETE_COMMENT",
-        payload: {
-            comentId,
-            repliesId
-        }
-    };
-};
-
-export const actionUpdateComment = (comment, id) => {
+export const actionUpdateComment = (comment) => {
     return {
         type: "UPDATE_COMMENT",
         payload: {
-            updateComent: comment,
-            repliesId: id
+            updateComment: comment
         }
     };
 };

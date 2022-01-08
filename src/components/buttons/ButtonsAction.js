@@ -9,13 +9,14 @@ import { soft_red } from "../color";
 const ButtonsAction = ({ setShowForm, user, currentUser, comment }) => {
     const dispatch = useDispatch();
     const cms = useSelector(state => state.comments);
+
     const handleClick = () => {
-        setShowForm(f => !f);
-        const findCmt = cms.find(cmt => cmt.id === comment.id);
-        if (findCmt) return dispatch(actionDeleteComment(comment.id));
-        // find comment by replyingTo
-        const cmtRply = getRepliesByUser(cms, comment.replyingTo);
-        dispatch(actionDeleteComment(comment.id, cmtRply.id));
+        dispatch(actionDeleteComment(comment.id));
+        // const findCmt = cms.find(cmt => cmt.id === comment.id);
+        // if (findCmt) return dispatch(actionDeleteComment(comment.id));
+        // // find comment by replyingTo
+        // const cmtRply = getRepliesByUser(cms, comment.replyingTo);
+        // dispatch(actionDeleteComment(comment.id));
     };
     return (
         <ContainButton >

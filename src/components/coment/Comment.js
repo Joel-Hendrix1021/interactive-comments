@@ -8,41 +8,26 @@ import ButtonsAction from "../buttons/ButtonsAction.js";
 import Modal from "../modal/Modal.js";
 import { BodyComment, BtnCount, BtnCounts, CommentStyle, P, ReplyingTo } from "./index.js";
 import { Span } from "../buttons/index.js";
+import { getRepliesByUser } from "../../helper/getRepliesByUser.js";
 
 const Comment = ({ comment }) => {
     const [showModal, setShowModal] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [listCount, setListCount] = useState([]);
-    const [count, setCount] = useState(0);
     const currentUser = useSelector(state => state.currentUser.username);
     const dispatch = useDispatch();
     const user = comment.user.username;
 
     const handleCountScore = (id, action) => {
         if (action === "plus") {
-            console.log("+");
-            if (!listCount.includes(currentUser)) {
-                setCount(count + 1);
-                setListCount([...listCount, currentUser]);
-                return dispatch(actionCountPlus(id));
-            }
-            if (count <= 0) {
-                setCount(count + 1);
-                return dispatch(actionCountPlus(id));
+            if (!listCount.includes(user)) {
+                dispatch(actionCountPlus(id));
+                setListCount([...listCount, user]);
             }
         } else if (action === "minus") {
-            console.log("-");
-            if (listCount.includes(currentUser)) {
-                if (count >= 0) {
-                    setCount(count - 1);
-                    return dispatch(actionCountMinus(id));
-                }
-            }
-            if (!listCount.includes(currentUser)) {
-                if (count === 0) {
-                    setCount(count - 1);
-                    return dispatch(actionCountMinus(id));
-                }
+            if (!listCount.includes(user)) {
+                setListCount([...listCount, user]);
+                dispatch(actionCountMinus(id));
             }
         }
     };

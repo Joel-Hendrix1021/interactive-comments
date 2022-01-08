@@ -11,7 +11,7 @@ export const Form = styled.form`
     height: 16rem;
     margin-bottom: 2rem;
     background: #f5f5f5;
-    width: 90%;
+    width: 92%;
     border-radius: 0.5rem;
     @media (min-width: 768px) {
         width:47%;

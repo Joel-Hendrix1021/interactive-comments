@@ -26,7 +26,7 @@ export const Thread = styled.div`
 export const LineThread = styled.span`
     background: hsla(211, 10%, 45%, 0.158);
     width: 3px;
-    height: 97%;
+    height: 94%;
     margin-top:1rem;
    
     @media (min-width: 768px) {

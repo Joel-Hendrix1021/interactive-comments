@@ -14,49 +14,34 @@ const initialState = {
     user: null
 };
 
-const AddCmts = ({ comment, commentId, setShowForm, replyingTo }) => {
-    const [newCmt, setNewCmt] = useState(comment || initialState);
+const AddCmts = ({ comment, commentId, setShowForm }) => {
+    const [newCmt, setNewCmt] = useState(comment || "");
     const dispatch = useDispatch();
-
     const user = useSelector(state => state.currentUser);
     const cm = useSelector(state => state.comments);
     const handleChange = (e) => {
         setNewCmt({ ...newCmt, [e.target.name]: e.target.value });
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newCmt.content.trim() === "") return alert("Please enter your comment");
-        if (newCmt.id) {
-            // update comment here
-            const findCmt = cm.find(c => c.id === comment.id);
-            if (findCmt) {
-                dispatch(actionUpdateComment(newCmt));
+        if (!newCmt.id) {
+            if (commentId) {
+                const newComment = { ...newCmt, user, createAt: Date.now(), id: Date.now() };
+                setShowForm(false);
+                return dispatch(actionAddComment(newComment, commentId));
             } else {
-                const findReply = getRepliesByUser(cm, comment.replyingTo);
-                dispatch(actionUpdateComment(newCmt, findReply.id));
+                const newComment = { ...newCmt, user, createAt: Date.now(), replies: [], id: Date.now() };
+                dispatch(actionAddComment(newComment));
             }
-            setShowForm(false);
-            return;
         }
-
-        if (commentId) { /// comment by comment
-            const findCmt = cm.find(item => item.id === commentId);
-            if (findCmt) {
-                const newComment = { ...newCmt, id: Date.now(), user, createAt: Date.now(), replyingTo: findCmt.user.username };
-                dispatch(actionAddComment(newComment, commentId));
-            } else { // name of comment initial a reply
-                const findCmt = getRepliesByUser(cm, replyingTo);
-                // find comment by replyingTo
-                const findReply = findCmt.replies.find(c => c.replyingTo === replyingTo);
-                const newComment = { ...newCmt, id: Date.now(), user, createAt: Date.now(), replyingTo: findReply.user.username };
-                dispatch(actionAddComment(newComment, findCmt.id));
-            }
+        if (newCmt.id) {
+            const newComment = { ...newCmt, user, createAt: Date.now() };
             setShowForm(false);
-        } if (commentId === undefined) { /// add new comment post
-            const newComment = { ...newCmt, id: Date.now(), user, createAt: Date.now(), replies: [] };
-            dispatch(actionAddComment(newComment));
-            setNewCmt(initialState);
+            dispatch(actionUpdateComment(newComment));
         }
+        setNewCmt(initialState);
     };
 
     return (
